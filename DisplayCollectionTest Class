@@ -1,0 +1,91 @@
+// Virginia Tech Honor Code Pledge:
+//
+// As a Hokie, I will conduct myself with honor and integrity at all times.
+// I will not lie, cheat, or steal, nor will I accept the actions of those who 
+// do.
+// -- Prakhar Pandey (prakhar28)
+
+package project1;
+ 
+import bag.BagInterface; 
+import student.TestableRandom;
+
+// -------------------------------------------------------------------------
+/**
+ *  Tests the method in the DisplayCollection class to ensure that the methods 
+ *  work correctly.
+ * 
+ *  @author Prakhar Pandey (prakhar28)
+ *  @version 11-September-2023
+ */
+public class DisplayCollectionTest extends student.TestCase
+{
+    //~ Fields ................................................................
+
+    //~ Constructors ..........................................................
+
+    //~Public  Methods ........................................................
+
+    /**
+     * Sets up the initial state for test cases.
+     * This method is called before each individual test case is executed.
+     * It initializes any necessary objects or resources that will be used
+     * in the test cases.
+     */
+    public void setUp()
+    {
+        // This method intentionally left empty.
+        // No specific setup required for this test class.
+    }
+    
+    /**
+     * tests the bag for it's contents.
+     */
+    public void testBagContents()
+    {
+        for (int i = 5; i <= 15; i++)
+        {
+            String[] legalStrings = DisplayCollection.STRINGS;
+            
+            TestableRandom.setNextInts(i - 5);
+            DisplayCollection dc = new DisplayCollection();
+
+            BagInterface<String> bag = dc.getItemBag();
+
+            while (!bag.isEmpty())
+            {
+                String item = bag.remove();
+                
+                boolean isLegal = false;
+                for (String legalString : legalStrings)
+                {
+                    if (item.equals(legalString))
+                    {
+                        isLegal = true;
+                        break;
+                    }
+                }
+                
+                assertTrue("Item should be one of the legal strings", isLegal);
+            }
+        }
+    }
+    
+    /**
+     * tests the bag for it's size.
+     */
+    public void testBagSize()
+    {
+        for (int i = 5; i <= 15; i++) 
+        {
+            TestableRandom.setNextInts(i - 5);
+            DisplayCollection dc = new DisplayCollection();
+            
+            BagInterface<String> bag = dc.getItemBag();
+            
+            int bagSize = bag.getCurrentSize();
+            assertTrue("Bag size should be >= 5", bagSize >= 5);
+            assertTrue("Bag size should be <= 15", bagSize <= 15);
+        }
+    }
+}
