@@ -1,0 +1,55 @@
+package project1;
+import bag.Bag; 
+import bag.BagInterface; 
+import student.TestableRandom;
+
+// -------------------------------------------------------------------------
+/**
+ * The DisplayCollection class represents a collection of randomly generated
+ * strings.
+ * 
+ *  @author Prakhar Pandey (prakhar28)
+ *  @version 11-September-2023
+ */
+public class DisplayCollection
+{
+    //~ Fields ................................................................
+    private BagInterface<String> itemBag;
+    
+    
+    /**
+     * The STRINGS field is a public static final constant array of strings
+     * that contains all possible strings that can be in the bag.
+     */
+    public static final String[] STRINGS = {"red circle", "blue circle", 
+        "red square", "blue square"};
+    
+    // ----------------------------------------------------------
+    
+    /**
+     * Create a new DisplayCollection object.
+     */
+    public DisplayCollection()
+    {
+        this.itemBag = new Bag<>();
+        TestableRandom random = new TestableRandom();
+        int size = random.nextInt(11) + 5;
+        for (int i = 0; i < size; i++)
+        {
+            int randomIndex = random.nextInt(STRINGS.length);
+            String randomString = STRINGS[randomIndex];
+            itemBag.add(randomString);
+        }
+    }
+    
+    //~Public  Methods ........................................................
+    
+    /**
+     * Returns a reference to the DisplayCollection's itemBag.
+     * @return BagInterface<String> is the type of itemBag returned.
+     */
+    public BagInterface<String> getItemBag()
+    {
+        return itemBag;
+    }
+}
