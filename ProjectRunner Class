@@ -1,0 +1,38 @@
+// Virginia Tech Honor Code Pledge:
+//
+// As a Hokie, I will conduct myself with honor and integrity at all times.
+// I will not lie, cheat, or steal, nor will I accept the actions of those who 
+// do.
+// -- Prakhar Pandey (prakhar28)
+
+package project1;
+
+import bag.Bag; 
+import bag.BagInterface; 
+import cs2.TextShape;
+import student.TestableRandom; 
+import cs2.Window; 
+import cs2.Button;
+import cs2.WindowSide;
+
+// -------------------------------------------------------------------------
+/**
+ *   The ProjectRunner class is responsible for running the main program.
+ * 
+ *  @author Prakhar Pandey (prakhar28)
+ *  @version 11-September-2023
+ */
+public class ProjectRunner
+{
+    /**
+     * The main method of the program.
+     * @param args The arguments taken in by the method to allow the program to
+     * run.
+     */
+    public static void main(String[] args)
+    {
+        DisplayCollection displayCollection = new DisplayCollection();
+        ShapeWindow shapeWindow = new ShapeWindow(displayCollection.getItemBag()
+            );
+    }
+}
