@@ -1,0 +1,125 @@
+package project1;
+
+import bag.Bag; 
+import bag.BagInterface; 
+import cs2.TextShape;
+import student.TestableRandom; 
+import cs2.Window; 
+import cs2.Button;
+import cs2.WindowSide;
+import java.awt.Color;
+
+// -------------------------------------------------------------------------
+/**
+ *  The ShapeWindow class contains the Graphical User Interface (GUI) 
+ *  functionality for this project.
+ * 
+ *  @author Prakhar Pandey (prakhar28)
+ *  @version 11-September-2023
+ */
+public class ShapeWindow
+{
+    //~ Fields ................................................................
+    private Window window;
+    private TextShape textShape;
+    private Button quitButton;
+    private Button chooseButton;
+    private BagInterface<String> itemBag;
+
+    
+    // ----------------------------------------------------------
+    /**
+     * Create a new ShapeWindow object.
+     * @param itemBag
+     */
+    //~ Constructors ..........................................................
+
+    public ShapeWindow(BagInterface<String> itemBag)
+    {
+        window = new Window();
+        window.setTitle("Project 1");
+        this.itemBag = itemBag;
+        
+        quitButton = new Button("Quit");
+        quitButton.onClick(this,"clickedQuit");
+        window.addButton(quitButton, WindowSide.NORTH);
+        
+        chooseButton = new Button("Choose");
+        chooseButton.onClick(this,"clickedChoose");
+        window.addButton(chooseButton, WindowSide.SOUTH);
+        
+        textShape = new TextShape(0, 0, "");
+        window.addShape(textShape);
+    }
+    //~Public  Methods ........................................................
+
+    /**
+     * Handles the action when the Quit button is clicked.
+     * @param quitButton The Quit button that triggered the action.
+     */
+    public void clickedQuit(Button quitButton)
+    {
+        System.exit(0);
+    }
+    
+    /**
+     * Handles the action when the Choose button is clicked.
+     *
+     * @param chooseButton The Choose button that triggered the action. 
+     */
+    public void clickedChoose(Button chooseButton)
+    {
+        if (itemBag.isEmpty()) 
+        {
+            textShape.setText("No more items.");
+        }
+        
+        else 
+        {
+            String item = itemBag.remove();
+            textShape.setText(item);
+        }
+        colorText();
+        centerText();
+    }
+    
+    /**
+     * Adjusts the color of the text in the textShape based on its content.
+     */
+    private void colorText()
+    {
+        String currentText = textShape.getText().toLowerCase();
+
+        if (currentText.contains("red")) 
+        {
+            textShape.setForegroundColor(Color.RED);
+        } 
+        else if (currentText.contains("blue")) 
+        {
+            textShape.setForegroundColor(Color.BLUE);
+        } 
+        else 
+        {
+            textShape.setForegroundColor(Color.BLACK);
+        }
+
+        window.repaint();
+    }
+    
+    /**
+     * Centers the text within the window's graph panel.
+     */
+    private void centerText()
+    {
+        int textWidth = textShape.getWidth();
+        int textHeight = textShape.getHeight();
+        int windowWidth = window.getGraphPanelWidth();
+        int windowHeight = window.getGraphPanelHeight();
+
+        int newX = (windowWidth - textWidth) / 2;
+        int newY = (windowHeight - textHeight) / 2;
+
+        textShape.setX(newX);
+        textShape.setY(newY);
+    }
+}
