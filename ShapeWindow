@@ -19,7 +19,6 @@ import java.awt.Color;
  */
 public class ShapeWindow
 {
-    //~ Fields ................................................................
     private Window window;
     private TextShape textShape;
     private Button quitButton;
@@ -27,13 +26,10 @@ public class ShapeWindow
     private BagInterface<String> itemBag;
 
     
-    // ----------------------------------------------------------
     /**
      * Create a new ShapeWindow object.
      * @param itemBag
      */
-    //~ Constructors ..........................................................
-
     public ShapeWindow(BagInterface<String> itemBag)
     {
         window = new Window();
@@ -51,7 +47,6 @@ public class ShapeWindow
         textShape = new TextShape(0, 0, "");
         window.addShape(textShape);
     }
-    //~Public  Methods ........................................................
 
     /**
      * Handles the action when the Quit button is clicked.
