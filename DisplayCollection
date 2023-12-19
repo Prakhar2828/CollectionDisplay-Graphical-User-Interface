@@ -13,7 +13,6 @@ import student.TestableRandom;
  */
 public class DisplayCollection
 {
-    //~ Fields ................................................................
     private BagInterface<String> itemBag;
     
     
@@ -23,8 +22,6 @@ public class DisplayCollection
      */
     public static final String[] STRINGS = {"red circle", "blue circle", 
         "red square", "blue square"};
-    
-    // ----------------------------------------------------------
     
     /**
      * Create a new DisplayCollection object.
@@ -41,8 +38,6 @@ public class DisplayCollection
             itemBag.add(randomString);
         }
     }
-    
-    //~Public  Methods ........................................................
     
     /**
      * Returns a reference to the DisplayCollection's itemBag.
